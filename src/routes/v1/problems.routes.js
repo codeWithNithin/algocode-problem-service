@@ -1,18 +1,18 @@
 const express = require('express')
-const { ProblemController } = require('../../controllers')
+const { problemController } = require('../../controllers')
 const problemRouter = express.Router()
 
-problemRouter.get('/ping', ProblemController.pingCtrl)
+problemRouter.get('/ping', problemController.pingCtrl)
 
 // /api/v1/problems/:id
-problemRouter.get('/:id', ProblemController.getProblem)
+problemRouter.get('/:id', problemController.getProblem)
 // /api/v1/problems
-problemRouter.get('/', ProblemController.getProblems)
+problemRouter.get('/', problemController.getProblems)
 // /api/v1/problems/:id
-problemRouter.post('/', ProblemController.addProblem)
+problemRouter.post('/', problemController.addProblem)
 // /api/v1/problems/:id
-problemRouter.put('/:id', ProblemController.updateProblem)
+problemRouter.put('/:id', problemController.updateProblem)
 // /api/v1/problems/:id
-problemRouter.delete('/:id', ProblemController.deleteProblem)
+problemRouter.delete('/:id', problemController.deleteProblem)
 
 module.exports = problemRouter
