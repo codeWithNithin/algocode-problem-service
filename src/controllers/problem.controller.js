@@ -1,9 +1,11 @@
+const {StatusCodes} = require('http-status-codes')
+
 function pingCtrl(req, res) {
 return res.json({msg: 'ping ctrl is up'})
 }
 
 function addProblem(req, res) {
-return res.status(501).json({message: 'Not Implemented !!!'})
+return res.status(StatusCodes.NOT_IMPLEMENTED).json({message: 'Not Implemented !!!'})
 }
 
 function getProblem(req, res) {
