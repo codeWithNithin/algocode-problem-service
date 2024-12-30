@@ -2,8 +2,6 @@ const express = require('express')
 const { problemController } = require('../../controllers')
 const problemRouter = express.Router()
 
-problemRouter.get('/ping', problemController.pingCtrl)
-
 // /api/v1/problems/:id
 problemRouter.get('/:id', problemController.getProblem)
 // /api/v1/problems

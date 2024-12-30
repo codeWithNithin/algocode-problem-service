@@ -1,10 +1,6 @@
 const { StatusCodes } = require('http-status-codes')
 const NotImplementedError = require('../errors/NotImplemented.error')
 
-function pingCtrl(req, res) {
-  return res.json({ msg: 'ping ctrl is up' })
-}
-
 function addProblem(req, res, next) {
   try {
     throw new NotImplementedError('addProblem')
@@ -13,20 +9,36 @@ function addProblem(req, res, next) {
   }
 }
 
-function getProblem(req, res) {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: 'Not Implemented !!!' })
+function getProblem(req, res, next) {
+  try {
+    throw new NotImplementedError('getProblem')
+  } catch (err) {
+    next(err)
+  }
 }
 
-function getProblems(req, res) {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: 'Not Implemented !!!' })
+function getProblems(req, res, next) {
+  try {
+    throw new NotImplementedError('getProblems')
+  } catch (err) {
+    next(err)
+  }
 }
 
-function deleteProblem(req, res) {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: 'Not Implemented !!!' })
+function updateProblem(req, res, next) {
+  try {
+    throw new NotImplementedError('updateProblem')
+  } catch (err) {
+    next(err)
+  }
 }
 
-function updateProblem(req, res) {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({ message: 'Not Implemented !!!' })
+function deleteProblem(req, res, next) {
+  try {
+    throw new NotImplementedError('deleteProblem')
+  } catch (err) {
+    next(err)
+  }
 }
 
 module.exports = {
@@ -35,5 +47,4 @@ module.exports = {
   getProblems,
   deleteProblem,
   updateProblem,
-  pingCtrl
 }
