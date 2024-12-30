@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 const { port } = require('./config/server.config');
 const apiRouter = require('./routes');
+const errorHandler = require('./utils/errorHandler');
 
 const app = express();
 
@@ -15,8 +16,11 @@ app.use('/api', apiRouter);
 
 
 app.get('/ping', (req, res) => {
-  res.json({message: 'im working dude!!!'})
+  res.json({ message: 'im working dude!!!' })
 })
+
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Connected to port ${port}`);
