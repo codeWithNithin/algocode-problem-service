@@ -2,15 +2,19 @@ const express = require('express')
 const { problemController } = require('../../controllers')
 const problemRouter = express.Router()
 
-// /api/v1/problems/:id
+//GET /api/v1/problems/:id
 problemRouter.get('/:id', problemController.getProblem)
-// /api/v1/problems
+
+//GET /api/v1/problems
 problemRouter.get('/', problemController.getProblems)
-// /api/v1/problems/:id
+
+//POST /api/v1/problems
 problemRouter.post('/', problemController.addProblem)
-// /api/v1/problems/:id
+
+//UPDATE /api/v1/problems/:id
 problemRouter.put('/:id', problemController.updateProblem)
-// /api/v1/problems/:id
+
+//DEL /api/v1/problems/:id
 problemRouter.delete('/:id', problemController.deleteProblem)
 
 module.exports = problemRouter
