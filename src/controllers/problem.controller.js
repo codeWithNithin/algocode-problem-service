@@ -1,25 +1,51 @@
 const { StatusCodes } = require('http-status-codes')
 const NotImplementedError = require('../errors/NotImplemented.error')
+const { ProblemService } = require('../services')
+const { ProblemRepository } = require('../repositories');
 
-function addProblem(req, res, next) {
+
+const problemService = new ProblemService(new ProblemRepository());
+
+async function addProblem(req, res, next) {
   try {
-    throw new NotImplementedError('addProblem')
+    // throw new NotImplementedError('addProblem')
+    console.log('incoming req body', req.body)
+    const newProblem = await problemService.createProblem(req.body)
+    return res.status(StatusCodes.CREATED).json({
+      status: true,
+      message: 'Succefully created a new problem',
+      error: {},
+      data: newProblem
+    })
   } catch (err) {
     next(err)
   }
 }
 
-function getProblem(req, res, next) {
+async function getProblem(req, res, next) {
   try {
-    throw new NotImplementedError('getProblem')
+    console.log('problem id in controller', req.params.id)
+    const problem = await problemService.getProblem(req.params.id);
+    res.status(StatusCodes.OK).json({
+      status: true,
+      message: 'Successfully fetched a problem',
+      error: {},
+      data: problem
+    })
   } catch (err) {
     next(err)
   }
 }
 
-function getProblems(req, res, next) {
+async function getProblems(req, res, next) {
   try {
-    throw new NotImplementedError('getProblems')
+    const problems = await problemService.getProblems();
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Successfully fetched all the problems',
+      error: {},
+      data: problems
+    })
   } catch (err) {
     next(err)
   }
